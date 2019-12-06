@@ -5,7 +5,10 @@
  */
 package olinimageprocessor;
 
+import java.io.File;
 import javax.swing.JDesktopPane;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileFilter;
 
 /**
  *
@@ -49,6 +52,11 @@ public class NewEditImage extends javax.swing.JInternalFrame {
         jLabel1.setText("Cargar Imagen");
 
         jButton1.setText("Examinar...");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setBackground(new java.awt.Color(204, 204, 204));
         jLabel2.setForeground(new java.awt.Color(204, 255, 255));
@@ -79,6 +87,23 @@ public class NewEditImage extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+ 
+         FileFilter filter1 = new ExtensionFileFilter("JPG and JPEG", new String[] { "JPG", "JPEG","PNG" });
+        fileChooser.setFileFilter( filter1);
+             
+        int result = fileChooser.showOpenDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            System.out.println("Selected file: " + selectedFile.getAbsolutePath());
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -86,3 +111,5 @@ public class NewEditImage extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
+
+
